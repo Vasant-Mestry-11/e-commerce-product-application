@@ -6,29 +6,26 @@ import { MdHeadsetMic } from "react-icons/md";
 const Contact = () => {
   return (
     <Layout>
-      <div className="contact-container">
-        <div className="left-panel">
-          <img src="/images/contactus.jpeg" alt="contact us" />
+      <div className="row container mx-auto contact-container">
+        <div className="col-md-6 my-auto left-panel">
+          <img
+            src="/images/contactus.jpeg"
+            alt="contact us"
+            style={{ width: "100%" }}
+          />
         </div>
-        <div className="right-panel">
-          <button className="contact-button">Contact Us</button>
-          <p className="contacts">
-            <span>
-              <HiOutlineMailOpen />
-            </span>
-            : <span>www.help@ecommerceapp.com</span>
+        <div className="col-md-6 right-panel">
+          <button className="bg-dark p-2 text-white text-center contact-button">
+            Contact Us
+          </button>
+          <p className="mt-3">
+            <HiOutlineMailOpen /> : <span>www.help@ecommerceapp.com</span>
           </p>
-          <p className="contacts">
-            <span>
-              <FiPhoneCall />
-            </span>{" "}
-            : <span>012-3456789</span>
+          <p className="mt-3">
+            <FiPhoneCall /> : <span>012-3456789</span>
           </p>
-          <p className="contacts">
-            <span>
-              <MdHeadsetMic />
-            </span>{" "}
-            :<span>1800-0000-0000 (toll-free)</span>
+          <p className="mt-3">
+            <MdHeadsetMic /> :<span>1800-0000-0000 (toll-free)</span>
           </p>
         </div>
       </div>
