@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Layout from "../../components/Layout/Layout";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import '../../styles/authStyles.css'
 
 const Register = () => {
   const [userDetails, setUserDetails] = useState({
@@ -11,6 +14,8 @@ const Register = () => {
     address: "",
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setUserDetails((prevState) => ({
       ...prevState,
@@ -18,17 +23,37 @@ const Register = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.success("Registered Successfully!");
+    try {
+      const res = await axios.post(
+        `http://localhost:8080/api/v1/auth/register`,
+        {
+          name,
+          email,
+          password,
+          phone,
+          address,
+        }
+      );
+      if (res.data.success) {
+        toast.success(res.data.message);
+        navigate("/login");
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
   };
 
   const { name, email, password, phone, address } = userDetails;
   return (
     <Layout title="Register">
-      <div className="register">
-        <h1>Register</h1>
+      <div className="form-container">
         <form onSubmit={handleSubmit}>
+          <h1 className="title">Register Now</h1>
           <div className="mb-3">
             <input
               type="text"
