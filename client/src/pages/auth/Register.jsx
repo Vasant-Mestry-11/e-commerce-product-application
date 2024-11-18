@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Layout from "../../components/Layout/Layout";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [userDetails, setUserDetails] = useState({
@@ -19,7 +20,8 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  }
+    toast.success("Registered Successfully!");
+  };
 
   const { name, email, password, phone, address } = userDetails;
   return (
