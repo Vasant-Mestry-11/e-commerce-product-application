@@ -91,3 +91,14 @@
   border: 1px solid black;
   margin-top: 2rem;
 }
+
+
+/* Register */
+
+.register{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  flex-direction: column;
+}
