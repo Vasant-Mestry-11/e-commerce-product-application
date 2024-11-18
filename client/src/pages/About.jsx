@@ -2,7 +2,7 @@ import Layout from "../components/Layout/Layout";
 
 const About = () => {
   return (
-    <Layout>
+    <Layout title="About E-Commerce app">
       <div className="row container mx-auto contact-container">
         <div className="col-md-6 my-auto left-panel">
           <img

@@ -2,7 +2,7 @@ import Layout from "../components/Layout/Layout";
 
 const Policy = () => {
   return (
-    <Layout>
+    <Layout title="Privacy Policy">
       <div className="row container mx-auto contact-container">
         <div className="col-md-6 my-auto left-panel">
           <img

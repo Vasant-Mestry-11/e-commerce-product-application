@@ -5,7 +5,7 @@ import { MdHeadsetMic } from "react-icons/md";
 
 const Contact = () => {
   return (
-    <Layout>
+    <Layout title="Contact">
       <div className="row container mx-auto contact-container">
         <div className="col-md-6 my-auto left-panel">
           <img
