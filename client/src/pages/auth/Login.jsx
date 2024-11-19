@@ -3,15 +3,15 @@ import Layout from "../../components/Layout/Layout";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const [userDetails, setUserDetails] = useState({
-    name: "",
     email: "",
     password: "",
-    phone: "",
-    address: "",
   });
+
+  const [auth, setAuth] = useAuth();
 
   const navigate = useNavigate();
 
@@ -31,6 +31,12 @@ const Login = () => {
       });
       if (res.data.success) {
         toast.success(res.data.message);
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
+        localStorage.setItem("auth", JSON.stringify(res.data));
         navigate("/");
       } else {
         toast.error(res.data.message);

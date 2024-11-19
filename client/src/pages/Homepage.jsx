@@ -1,8 +1,8 @@
 import Layout from "../components/Layout/Layout";
-import { useAuth } from "../context/auth";
+import useAuth from "../hooks/useAuth";
 
 const Homepage = () => {
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
 
   return (
     <Layout title="Best offers">
