@@ -2,7 +2,16 @@ import { NavLink, Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Header = () => {
-  const [auth] = useAuth();
+  const [auth, setAuth] = useAuth();
+
+  const handleLogout = () => {
+    setAuth({
+      ...auth,
+      user: null,
+      token: "",
+    });
+    localStorage.removeItem("auth");
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -49,7 +58,7 @@ const Header = () => {
               ) : (
                 <>
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/logout">
+                    <NavLink className="nav-link" to="/login" onClick={handleLogout}>
                       Logout
                     </NavLink>
                   </li>
