@@ -1,5 +1,7 @@
 import { NavLink, Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
+import { LOGOUT } from "../../constants/auth";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -11,6 +13,7 @@ const Header = () => {
       token: "",
     });
     localStorage.removeItem("auth");
+    toast.success(LOGOUT);
   };
   return (
     <>
@@ -58,7 +61,11 @@ const Header = () => {
               ) : (
                 <>
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/login" onClick={handleLogout}>
+                    <NavLink
+                      className="nav-link"
+                      to="/login"
+                      onClick={handleLogout}
+                    >
                       Logout
                     </NavLink>
                   </li>
