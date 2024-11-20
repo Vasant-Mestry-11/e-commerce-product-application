@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Spinner = () => {
   const [count, setCount] = useState(5);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -11,11 +12,13 @@ const Spinner = () => {
     }, 1000);
 
     if (count === 0) {
-      navigate("/login");
+      navigate("/login", {
+        state: location,
+      });
     }
 
     return () => clearInterval(timer);
-  }, [navigate, count]);
+  }, [navigate, count, location]);
 
   return (
     <div
