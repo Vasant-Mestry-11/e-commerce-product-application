@@ -33,7 +33,6 @@ const ForgotPassword = () => {
           answer,
         }
       );
-      console.log(res);
       if (res?.data.success) {
         toast.success(res.data.message);
         navigate("/login");
