@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 
 const registerController = async (req, res) => {
   try {
-    const { name, email, password, phone, address, question } = req.body;
+    const { name, email, password, phone, address, answer } = req.body;
 
     // validations
     if (!name) return res.send({ message: 'Name is required' })
@@ -13,6 +13,7 @@ const registerController = async (req, res) => {
     if (!password) return res.send({ message: 'Password is required' })
     if (!phone) return res.send({ message: 'Phone number is required' })
     if (!address) return res.send({ message: 'Address is required' })
+    if (!answer) return res.send({ message: 'Answer is required' })
 
     const existingUser = await userModel.findOne({ email })
     // existing user
@@ -27,7 +28,7 @@ const registerController = async (req, res) => {
     const hashedPassword = await hashPassword(password)
 
     // save
-    const user = await new userModel({ name, email, password: hashedPassword, phone, address, }).save()
+    const user = await new userModel({ name, email, password: hashedPassword, phone, address, answer }).save()
 
     return res.status(201).send({
       success: true,
@@ -115,10 +116,10 @@ const forgotPasswordController = async (req, res) => {
       })
     }
 
-    const hashedNewPassword = hashPassword(newPassword);
+    const hashedNewPassword = await hashPassword(newPassword);
     await userModel.findByIdAndUpdate(user._id, { password: hashedNewPassword });
     return res.status(200).send({
-      succes: true,
+      success: true,
       message: "Password reset successfully"
     })
   } catch (error) {
