@@ -3,7 +3,7 @@ import Layout from "../../components/Layout/Layout";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import '../../styles/authStyles.css'
+import "../../styles/authStyles.css";
 
 const Register = () => {
   const [userDetails, setUserDetails] = useState({
@@ -12,6 +12,7 @@ const Register = () => {
     password: "",
     phone: "",
     address: "",
+    answer: "",
   });
 
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ const Register = () => {
           password,
           phone,
           address,
+          answer,
         }
       );
       if (res.data.success) {
@@ -48,7 +50,7 @@ const Register = () => {
     }
   };
 
-  const { name, email, password, phone, address } = userDetails;
+  const { name, email, password, phone, address, answer } = userDetails;
   return (
     <Layout title="Register">
       <div className="form-container">
@@ -114,6 +116,19 @@ const Register = () => {
               placeholder="Enter address"
               name="address"
               value={address}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="mb-3">
+            <input
+              type="text"
+              className="form-control"
+              id="exampleInputAnswer"
+              placeholder="What is your favorite sport"
+              name="answer"
+              value={answer}
               onChange={handleChange}
               required
             />
