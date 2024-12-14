@@ -1,6 +1,6 @@
 import express from 'express'
 import { isAdmin, requireSignIn } from '../middleware/authMiddleware.js';
-import { categoriesController, createCategoryController, updateCategoryController } from '../controller/categoryController.js';
+import { categoryController, categoriesController, createCategoryController, updateCategoryController } from '../controller/categoryController.js';
 
 const router = express.Router();
 
@@ -16,5 +16,9 @@ router.put('/update-category/:id', requireSignIn, isAdmin, updateCategoryControl
 // get categories
 
 router.get("/get-all-categories", categoriesController);
+
+// get category
+
+router.get("/get-category/:slug", categoryController);
 
 export default router

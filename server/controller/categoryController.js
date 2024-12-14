@@ -69,3 +69,24 @@ export const categoriesController = async (req, res) => {
     })
   }
 }
+
+export const categoryController = async (req, res) => {
+  try {
+    const { slug } = req.params;
+
+    const category = await Category.findOne({ slug })
+
+    return res.status(200).send({
+      success: true,
+      category,
+      message: 'Category fetched successfully'
+    })
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      error,
+      message: "Failed to get catgory"
+    })
+  }
+}
