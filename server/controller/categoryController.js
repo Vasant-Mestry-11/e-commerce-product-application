@@ -90,3 +90,21 @@ export const categoryController = async (req, res) => {
     })
   }
 }
+
+export const deleteCategoryController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Category.findByIdAndDelete(id);
+    res.status(200).send({
+      success: true,
+      message: "Category delete successfully"
+    })
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      error,
+      message: "Failed to delete category"
+    })
+  }
+}
