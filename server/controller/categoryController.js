@@ -27,3 +27,45 @@ export const createCategoryController = async (req, res) => {
     })
   }
 }
+
+
+export const updateCategoryController = async (req, res) => {
+  try {
+    const { name } = req.body;
+    const { id } = req.params;
+
+    const category = await Category.findByIdAndUpdate(id, { name, slug: slugify(name) }, { new: true });
+
+    return res.status(200).send({
+      success: true,
+      message: "Category updated successfully",
+      category
+    })
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Failed to update category"
+    })
+  }
+}
+
+export const categoriesController = async (req, res) => {
+  try {
+    const categories = await Category.find();
+    return res.status(200).send({
+      success: true,
+      categories,
+      message: "Categories fetched successfully"
+    })
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      error,
+      message: "Failed to get categories"
+    })
+  }
+}
